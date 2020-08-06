@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		422FA13B24DC976F0080BFF2 /* aircall_technical_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FA13A24DC976F0080BFF2 /* aircall_technical_testTests.swift */; };
+		42FB70EF24DC999A004878F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB70EC24DC999A004878F4 /* ViewController.swift */; };
+		42FB70F024DC999A004878F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB70ED24DC999A004878F4 /* AppDelegate.swift */; };
+		42FB70F124DC999A004878F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB70EE24DC999A004878F4 /* SceneDelegate.swift */; };
+		42FB70FA24DC99A6004878F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42FB70F324DC99A5004878F4 /* Assets.xcassets */; };
+		42FB70FC24DC99A6004878F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42FB70F624DC99A5004878F4 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		422FA13724DC976F0080BFF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 422FA11524DC976D0080BFF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 422FA11C24DC976D0080BFF2;
+			remoteInfo = "aircall-technical-test";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		422FA11D24DC976D0080BFF2 /* aircall-technical-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "aircall-technical-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		422FA13124DC976F0080BFF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		422FA13624DC976F0080BFF2 /* aircall-technical-testTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "aircall-technical-testTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		422FA13A24DC976F0080BFF2 /* aircall_technical_testTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aircall_technical_testTests.swift; sourceTree = "<group>"; };
+		422FA13C24DC976F0080BFF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42FB70EC24DC999A004878F4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		42FB70ED24DC999A004878F4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		42FB70EE24DC999A004878F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		42FB70F324DC99A5004878F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		42FB70F724DC99A5004878F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		422FA11A24DC976D0080BFF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		422FA13324DC976F0080BFF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		422FA11424DC976D0080BFF2 = {
+			isa = PBXGroup;
+			children = (
+				422FA11F24DC976D0080BFF2 /* aircall-technical-test */,
+				422FA13924DC976F0080BFF2 /* aircall-technical-testTests */,
+				422FA11E24DC976D0080BFF2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		422FA11E24DC976D0080BFF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				422FA11D24DC976D0080BFF2 /* aircall-technical-test.app */,
+				422FA13624DC976F0080BFF2 /* aircall-technical-testTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		422FA11F24DC976D0080BFF2 /* aircall-technical-test */ = {
+			isa = PBXGroup;
+			children = (
+				42FB70F224DC99A5004878F4 /* Resources */,
+				42FB70EB24DC999A004878F4 /* Classes */,
+				422FA13124DC976F0080BFF2 /* Info.plist */,
+			);
+			path = "aircall-technical-test";
+			sourceTree = "<group>";
+		};
+		422FA13924DC976F0080BFF2 /* aircall-technical-testTests */ = {
+			isa = PBXGroup;
+			children = (
+				422FA13A24DC976F0080BFF2 /* aircall_technical_testTests.swift */,
+				422FA13C24DC976F0080BFF2 /* Info.plist */,
+			);
+			path = "aircall-technical-testTests";
+			sourceTree = "<group>";
+		};
+		42FB70EB24DC999A004878F4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				42FB70EC24DC999A004878F4 /* ViewController.swift */,
+				42FB70ED24DC999A004878F4 /* AppDelegate.swift */,
+				42FB70EE24DC999A004878F4 /* SceneDelegate.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		42FB70F224DC99A5004878F4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				42FB70F324DC99A5004878F4 /* Assets.xcassets */,
+				42FB70F624DC99A5004878F4 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		422FA11C24DC976D0080BFF2 /* aircall-technical-test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 422FA13F24DC976F0080BFF2 /* Build configuration list for PBXNativeTarget "aircall-technical-test" */;
+			buildPhases = (
+				422FA11924DC976D0080BFF2 /* Sources */,
+				422FA11A24DC976D0080BFF2 /* Frameworks */,
+				422FA11B24DC976D0080BFF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "aircall-technical-test";
+			productName = "aircall-technical-test";
+			productReference = 422FA11D24DC976D0080BFF2 /* aircall-technical-test.app */;
+			productType = "com.apple.product-type.application";
+		};
+		422FA13524DC976F0080BFF2 /* aircall-technical-testTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 422FA14224DC976F0080BFF2 /* Build configuration list for PBXNativeTarget "aircall-technical-testTests" */;
+			buildPhases = (
+				422FA13224DC976F0080BFF2 /* Sources */,
+				422FA13324DC976F0080BFF2 /* Frameworks */,
+				422FA13424DC976F0080BFF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				422FA13824DC976F0080BFF2 /* PBXTargetDependency */,
+			);
+			name = "aircall-technical-testTests";
+			productName = "aircall-technical-testTests";
+			productReference = 422FA13624DC976F0080BFF2 /* aircall-technical-testTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		422FA11524DC976D0080BFF2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Yury Lapitsky";
+				TargetAttributes = {
+					422FA11C24DC976D0080BFF2 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					422FA13524DC976F0080BFF2 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 422FA11C24DC976D0080BFF2;
+					};
+				};
+			};
+			buildConfigurationList = 422FA11824DC976D0080BFF2 /* Build configuration list for PBXProject "aircall-technical-test" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 422FA11424DC976D0080BFF2;
+			productRefGroup = 422FA11E24DC976D0080BFF2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				422FA11C24DC976D0080BFF2 /* aircall-technical-test */,
+				422FA13524DC976F0080BFF2 /* aircall-technical-testTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		422FA11B24DC976D0080BFF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42FB70FA24DC99A6004878F4 /* Assets.xcassets in Resources */,
+				42FB70FC24DC99A6004878F4 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		422FA13424DC976F0080BFF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		422FA11924DC976D0080BFF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42FB70F024DC999A004878F4 /* AppDelegate.swift in Sources */,
+				42FB70EF24DC999A004878F4 /* ViewController.swift in Sources */,
+				42FB70F124DC999A004878F4 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		422FA13224DC976F0080BFF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				422FA13B24DC976F0080BFF2 /* aircall_technical_testTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		422FA13824DC976F0080BFF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 422FA11C24DC976D0080BFF2 /* aircall-technical-test */;
+			targetProxy = 422FA13724DC976F0080BFF2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		42FB70F624DC99A5004878F4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42FB70F724DC99A5004878F4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		422FA13D24DC976F0080BFF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		422FA13E24DC976F0080BFF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		422FA14024DC976F0080BFF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "aircall-technical-test/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "yurylapitsky.aircall-technical-test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		422FA14124DC976F0080BFF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "aircall-technical-test/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "yurylapitsky.aircall-technical-test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		422FA14324DC976F0080BFF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "aircall-technical-testTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "skyylex.aircall-technical-testTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/aircall-technical-test.app/aircall-technical-test";
+			};
+			name = Debug;
+		};
+		422FA14424DC976F0080BFF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "aircall-technical-testTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "skyylex.aircall-technical-testTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/aircall-technical-test.app/aircall-technical-test";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		422FA11824DC976D0080BFF2 /* Build configuration list for PBXProject "aircall-technical-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				422FA13D24DC976F0080BFF2 /* Debug */,
+				422FA13E24DC976F0080BFF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		422FA13F24DC976F0080BFF2 /* Build configuration list for PBXNativeTarget "aircall-technical-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				422FA14024DC976F0080BFF2 /* Debug */,
+				422FA14124DC976F0080BFF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		422FA14224DC976F0080BFF2 /* Build configuration list for PBXNativeTarget "aircall-technical-testTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				422FA14324DC976F0080BFF2 /* Debug */,
+				422FA14424DC976F0080BFF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 422FA11524DC976D0080BFF2 /* Project object */;
+}
