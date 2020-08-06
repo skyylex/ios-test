@@ -2,7 +2,7 @@
 //  Colors.swift
 //  aircall-technical-test
 //
-//  Created by Anna Lapitskaya on 07/08/2020.
+//  Created by Yury Lapitsky on 07/08/2020.
 //  Copyright © 2020 Yury Lapitsky. All rights reserved.
 //
 
