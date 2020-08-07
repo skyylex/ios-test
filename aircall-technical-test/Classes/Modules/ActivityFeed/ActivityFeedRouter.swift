@@ -2,7 +2,7 @@
 //  ActivityFeedRouter.swift
 //  aircall-technical-test
 //
-//  Created by Anna Lapitskaya on 07/08/2020.
+//  Created by Yury Lapitsky on 07/08/2020.
 //  Copyright © 2020 Yury Lapitsky. All rights reserved.
 //
 
@@ -38,15 +38,43 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
 protocol ActivityFeedViewInputs { }
 protocol ActivityFeedViewOutputs { }
 
+class ActivityFeedTableViewDataSource: NSObject, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "\(indexPath.row)"
+        return cell
+    }
+    
+}
+
 final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs {
     var output: ActivityFeedViewOutputs!
-     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    let dataSource = ActivityFeedTableViewDataSource()
+    
+    override func loadView() {
+        view = createView()
+    }
+    
+    func createView() -> UIView {
+        let view = UIView()
         let tableView = UITableView()
+        tableView.dataSource = dataSource
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         view.backgroundColor = UIColor.white
         view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 0),
+            view.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 0),
+            view.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: 0),
+            view.bottomAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 0),
+        ])
+        
+        return view
     }
 }
