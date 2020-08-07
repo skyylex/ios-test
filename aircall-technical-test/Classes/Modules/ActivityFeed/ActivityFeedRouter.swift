@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-protocol ActivityFeedRouterInputs {}
+protocol ActivityFeedRouterInputs {
+    func showCallDetails()
+}
 
 final class ActivityFeedRouter: ActivityFeedRouterInputs {
     let navigationController: UINavigationController
@@ -27,6 +29,13 @@ final class ActivityFeedRouter: ActivityFeedRouterInputs {
         
         navigationController.setViewControllers([viewController], animated: false)
     }
+    
+    // MARK: ActivityFeedRouterInputs
+    
+    func showCallDetails() {
+        // TODO: add proper support for Call Details
+        navigationController.pushViewController(UIViewController(), animated: true)
+    }
 }
 
 final class ActivityFeedPresenter: ActivityFeedViewOutputs {
@@ -37,10 +46,18 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
         self.view = view
         self.router = router
     }
+    
+    // MARK: ActivityFeedViewOutputs
+    func callSelected(at indexPath: IndexPath) {
+        // TODO: provide real call object
+        router.showCallDetails()
+    }
 }
 
 protocol ActivityFeedViewInputs { }
-protocol ActivityFeedViewOutputs { }
+protocol ActivityFeedViewOutputs {
+    func callSelected(at indexPath: IndexPath)
+}
 
 class ActivityFeedTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,19 +72,39 @@ class ActivityFeedTableViewDataSource: NSObject, UITableViewDataSource {
     
 }
 
+class ActivityFeedTableViewDelegate: NSObject, UITableViewDelegate {
+    var output: ActivityFeedViewOutputs!
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        output.callSelected(at: indexPath)
+    }
+    
+}
+
 final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs {
     var output: ActivityFeedViewOutputs!
     let dataSource = ActivityFeedTableViewDataSource()
+    let delegate = ActivityFeedTableViewDelegate()
     
     override func loadView() {
         view = createView()
     }
     
+    override func viewDidLoad() {
+        precondition(output != nil, "View Output should be set before view is loaded")
+        
+        super.viewDidLoad()
+        
+        delegate.output = output
+    }
+    
     func createView() -> UIView {
         let view = UIView()
         let tableView = UITableView()
-        tableView.dataSource = dataSource
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableView.delegate = delegate
+        tableView.dataSource = dataSource
         
         view.backgroundColor = UIColor.white
         view.addSubview(tableView)
