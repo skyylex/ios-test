@@ -12,8 +12,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    var router: ActivityFeedRouter?
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
@@ -22,8 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navigationVC = UINavigationController(rootViewController: UIViewController())
         
-        router = ActivityFeedRouter(navigationController: navigationVC)
-        router?.start()
+        let router = ActivityFeedRouter(navigationController: navigationVC)
+        router.start()
         
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()

@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-final class ActivityFeedRouter {
+protocol ActivityFeedRouterInputs {}
+
+final class ActivityFeedRouter: ActivityFeedRouterInputs {
     let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -19,7 +21,7 @@ final class ActivityFeedRouter {
     func start() {
         
         let viewController = ActivityFeedViewController()
-        let presenter = ActivityFeedPresenter(view: viewController)
+        let presenter = ActivityFeedPresenter(view: viewController, router: self)
         
         viewController.output = presenter
         
@@ -29,9 +31,11 @@ final class ActivityFeedRouter {
 
 final class ActivityFeedPresenter: ActivityFeedViewOutputs {
     let view: ActivityFeedViewInputs
+    let router: ActivityFeedRouterInputs
     
-    init(view: ActivityFeedViewInputs) {
+    init(view: ActivityFeedViewInputs, router: ActivityFeedRouterInputs) {
         self.view = view
+        self.router = router
     }
 }
 
