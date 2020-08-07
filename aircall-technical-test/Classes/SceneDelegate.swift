@@ -11,13 +11,21 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    
+    var router: ActivityFeedRouter?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewController()
+        
+        let navigationVC = UINavigationController(rootViewController: UIViewController())
+        
+        router = ActivityFeedRouter(navigationController: navigationVC)
+        router?.start()
+        
+        window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
     }
 
