@@ -24,10 +24,10 @@ final class ActivityFeedCell: UITableViewCell {
         case bottom
     }
     
-    func setup(position: Position) {
-        let phoneNumberLabel = createPhoneNumberLabel()
-        let detailsLabel = createDetailsLabel()
-        let timeLabel = createTimeLabel()
+    func setup(position: Position, cellModel: ActivityFeedItem) {
+        let phoneNumberLabel = createPhoneNumberLabel(phoneNumber: cellModel.phoneNumber)
+        let detailsLabel = createDetailsLabel(details: cellModel.details)
+        let timeLabel = createTimeLabel(time: cellModel.time)
         
         setupStyle(position: position)
         
@@ -58,26 +58,26 @@ final class ActivityFeedCell: UITableViewCell {
     
     // MARK: Labels
     
-    func createPhoneNumberLabel() -> UILabel {
+    func createPhoneNumberLabel(phoneNumber: String) -> UILabel {
         let label = UILabel()
-        label.text = "+1 347-318-0395"
+        label.text = phoneNumber
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }
     
-    func createTimeLabel() -> UILabel {
+    func createTimeLabel(time: String) -> UILabel {
         let label = UILabel()
-        label.text = "12:18 PM"
+        label.text = time
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 13)
         label.textColor = UIColor.gray184()
         return label
     }
     
-    func createDetailsLabel() -> UILabel {
+    func createDetailsLabel(details: String) -> UILabel {
         let detailsLabel = UILabel()
-        detailsLabel.text = "missed call"
+        detailsLabel.text = details
         detailsLabel.translatesAutoresizingMaskIntoConstraints = false
         detailsLabel.font = UIFont.boldSystemFont(ofSize: 13)
         detailsLabel.textColor = UIColor.gray184()

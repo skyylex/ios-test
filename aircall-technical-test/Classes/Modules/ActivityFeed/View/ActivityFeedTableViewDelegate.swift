@@ -11,6 +11,7 @@ import UIKit
 
 final class ActivityFeedTableViewDelegate: NSObject, UITableViewDelegate {
     var output: ActivityFeedViewOutputs!
+    var sectionTitles = [String]() 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         output.callSelected(at: indexPath)
@@ -21,9 +22,9 @@ final class ActivityFeedTableViewDelegate: NSObject, UITableViewDelegate {
         header.backgroundColor = UIColor.lightGray251()
         
         let dateLabel = UILabel()
-        dateLabel.text = "Today"
+        dateLabel.text = sectionTitles[section]
         dateLabel.textColor = UIColor.gray184()
-        dateLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        dateLabel.font = UIFont.boldSystemFont(ofSize: 13)
         
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -35,6 +36,10 @@ final class ActivityFeedTableViewDelegate: NSObject, UITableViewDelegate {
         ])
         
         return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
     
 }

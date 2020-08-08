@@ -37,19 +37,3 @@ final class ActivityFeedRouter: ActivityFeedRouterInputs {
         navigationController.pushViewController(UIViewController(), animated: true)
     }
 }
-
-final class ActivityFeedPresenter: ActivityFeedViewOutputs {
-    let view: ActivityFeedViewInputs
-    let router: ActivityFeedRouterInputs
-    
-    init(view: ActivityFeedViewInputs, router: ActivityFeedRouterInputs) {
-        self.view = view
-        self.router = router
-    }
-    
-    // MARK: ActivityFeedViewOutputs
-    func callSelected(at indexPath: IndexPath) {
-        // TODO: provide real call object
-        router.showCallDetails()
-    }
-}

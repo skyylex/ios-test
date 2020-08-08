@@ -9,15 +9,35 @@
 import Foundation
 import UIKit
 
-protocol ActivityFeedViewInputs { }
+struct ActivityFeedSection {
+    var title: String
+    var items: [ActivityFeedItem]
+}
+
+struct ActivityFeedItem {
+    var phoneNumber: String
+    var time: String
+    var details: String
+}
+
+protocol ActivityFeedViewInputs {
+    func setFeedSections(sections: [ActivityFeedSection])
+}
 protocol ActivityFeedViewOutputs {
     func callSelected(at indexPath: IndexPath)
 }
 
 final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs {
+    // MARK: ActivityFeedViewInputs
+    func setFeedSections(sections: [ActivityFeedSection]) {
+        self.dataSource.sections = sections
+        self.delegate.sectionTitles = sections.map { $0.title }
+    }
+    
     var output: ActivityFeedViewOutputs!
     let dataSource = ActivityFeedTableViewDataSource()
     let delegate = ActivityFeedTableViewDelegate()
+    var tableView: UITableView!
     
     override func loadView() {
         view = createView()
@@ -25,6 +45,7 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
     
     override func viewDidLoad() {
         precondition(output != nil, "View Output should be set before view is loaded")
+        precondition(tableView != nil, "UITableView should be already created in viewDidLoad")
         
         super.viewDidLoad()
         
@@ -33,7 +54,7 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
     
     func createView() -> UIView {
         let view = UIView()
-        let tableView = UITableView()
+        tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor.lightGray251()
         tableView.separatorStyle = .singleLine
