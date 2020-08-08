@@ -20,11 +20,11 @@ extension UIColor {
         )
     }
     
-    class func lightGray252() -> UIColor {
+    class func lightGray251() -> UIColor {
         return UIColor(
-            red: 252.0 / 255.0,
-            green: 252.0 / 255.0,
-            blue: 252.0 / 255.0,
+            red: 253.0 / 255.0,
+            green: 251.0 / 255.0,
+            blue: 251.0 / 255.0,
             alpha: 1.0
         )
     }
