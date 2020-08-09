@@ -122,14 +122,19 @@ final class ActivityFeedInteractor: ActivityFeedPresenterOutputs {
 
 extension ActivityFeedInteractor {
     func map(dataObjects: [CallDTO]) -> [CallDetails] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZ"
+        
+        // 2018-04-18T16:53:22.000Z 2020-08-09T09:56:55+0000
         return dataObjects.map { dataObject -> CallDetails? in
             guard let direction = Direction(rawValue: dataObject.direction) else { return nil }
             guard let type = CallType(rawValue: dataObject.type) else { return nil }
             guard let duration = Int(dataObject.duration) else { return nil }
+            guard let date = formatter.date(from: dataObject.creationDate) else { return nil }
             
             return CallDetails(
                 id: dataObject.id,
-                creationDate: Date(),
+                creationDate: date,
                 direction: direction,
                 from: dataObject.from,
                 to: dataObject.to,
