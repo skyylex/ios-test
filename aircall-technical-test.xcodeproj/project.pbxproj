@@ -13,6 +13,10 @@
 		4246947724DF47E700809C82 /* ActivityFeedTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246947624DF47E700809C82 /* ActivityFeedTableViewDelegate.swift */; };
 		4246947924DF48A000809C82 /* ActivityFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246947824DF48A000809C82 /* ActivityFeedPresenter.swift */; };
 		4246947B24DF5C7300809C82 /* ActivityFeedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246947A24DF5C7300809C82 /* ActivityFeedInteractor.swift */; };
+		4246947D24DFB30400809C82 /* CallDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246947C24DFB30400809C82 /* CallDetailsPresenter.swift */; };
+		4246947F24DFB33200809C82 /* CallDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246947E24DFB33200809C82 /* CallDetailsRouter.swift */; };
+		4246948124DFB3B900809C82 /* CallDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246948024DFB3B900809C82 /* CallDetailsViewController.swift */; };
+		4246948324DFB54800809C82 /* CallDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246948224DFB54800809C82 /* CallDetailsInteractor.swift */; };
 		42FB70EF24DC999A004878F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB70EC24DC999A004878F4 /* ViewController.swift */; };
 		42FB70F024DC999A004878F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB70ED24DC999A004878F4 /* AppDelegate.swift */; };
 		42FB70F124DC999A004878F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB70EE24DC999A004878F4 /* SceneDelegate.swift */; };
@@ -44,6 +48,10 @@
 		4246947624DF47E700809C82 /* ActivityFeedTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedTableViewDelegate.swift; sourceTree = "<group>"; };
 		4246947824DF48A000809C82 /* ActivityFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedPresenter.swift; sourceTree = "<group>"; };
 		4246947A24DF5C7300809C82 /* ActivityFeedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedInteractor.swift; sourceTree = "<group>"; };
+		4246947C24DFB30400809C82 /* CallDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDetailsPresenter.swift; sourceTree = "<group>"; };
+		4246947E24DFB33200809C82 /* CallDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDetailsRouter.swift; sourceTree = "<group>"; };
+		4246948024DFB3B900809C82 /* CallDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDetailsViewController.swift; sourceTree = "<group>"; };
+		4246948224DFB54800809C82 /* CallDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDetailsInteractor.swift; sourceTree = "<group>"; };
 		42FB70EC24DC999A004878F4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		42FB70ED24DC999A004878F4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42FB70EE24DC999A004878F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +172,10 @@
 		42FB710024DCA839004878F4 /* CallDetails */ = {
 			isa = PBXGroup;
 			children = (
+				4246947C24DFB30400809C82 /* CallDetailsPresenter.swift */,
+				4246948024DFB3B900809C82 /* CallDetailsViewController.swift */,
+				4246947E24DFB33200809C82 /* CallDetailsRouter.swift */,
+				4246948224DFB54800809C82 /* CallDetailsInteractor.swift */,
 			);
 			path = CallDetails;
 			sourceTree = "<group>";
@@ -280,11 +292,15 @@
 				42FB70F024DC999A004878F4 /* AppDelegate.swift in Sources */,
 				7CC0FA6C24DDF6AA00A07271 /* Colors.swift in Sources */,
 				4246947724DF47E700809C82 /* ActivityFeedTableViewDelegate.swift in Sources */,
+				4246948124DFB3B900809C82 /* CallDetailsViewController.swift in Sources */,
 				7C0638B524DDDEF300DF0B6C /* ActivityFeedRouter.swift in Sources */,
 				42FB70EF24DC999A004878F4 /* ViewController.swift in Sources */,
 				4227C3B824DF43EC00F9CB2B /* ActivityFeedCell.swift in Sources */,
 				4246947524DF47A800809C82 /* ActivityFeedTableViewDataSource.swift in Sources */,
+				4246948324DFB54800809C82 /* CallDetailsInteractor.swift in Sources */,
+				4246947D24DFB30400809C82 /* CallDetailsPresenter.swift in Sources */,
 				42FB70F124DC999A004878F4 /* SceneDelegate.swift in Sources */,
+				4246947F24DFB33200809C82 /* CallDetailsRouter.swift in Sources */,
 				7CC0FA6924DDF4A600A07271 /* ActivityFeedViewController.swift in Sources */,
 				4246947924DF48A000809C82 /* ActivityFeedPresenter.swift in Sources */,
 			);

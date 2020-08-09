@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ActivityFeedRouterInputs {
-    func showCallDetails()
+    func showCallDetails(call: CallDetails)
 }
 
 final class ActivityFeedRouter: ActivityFeedRouterInputs {
@@ -32,8 +32,8 @@ final class ActivityFeedRouter: ActivityFeedRouterInputs {
     
     // MARK: ActivityFeedRouterInputs
     
-    func showCallDetails() {
-        // TODO: add proper support for Call Details
-        navigationController.pushViewController(UIViewController(), animated: true)
+    func showCallDetails(call: CallDetails) {
+        let router = CallDetailsRouter(navigationController: self.navigationController)
+        router.start(call: call)
     }
 }

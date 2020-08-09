@@ -70,6 +70,7 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
         canUpdateView = false
     }
     
+    /// Cached calls should be used only for Routing
     private func updateView(with calls: [CallDetails]) {
         let sections = map(calls: calls)
         let updateViewAction = {
@@ -86,9 +87,12 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
     }
     
     // MARK: ActivityFeedViewOutputs
-    func callSelected(at indexPath: IndexPath) {
-        // TODO: provide real call object
-        router.showCallDetails()
+    func callSelected(_ call: ActivityFeedItem) {
+        guard let callDetails = call.userInfo as? CallDetails else {
+            preconditionFailure("ActivityFeedItem should keep call details")
+        }
+        
+        router.showCallDetails(call: callDetails)
     }
     
 }
@@ -116,7 +120,8 @@ private extension ActivityFeedPresenter {
             
             let item = ActivityFeedItem(phoneNumber: phone,
                                         time: time,
-                                        details: current.type.rawValue)
+                                        details: current.type.rawValue,
+                                        userInfo: current)
             let key = secondsOfDateRoundedToMidnight(date: current.creationDate)
             
             let otherItems = combined[key] ?? []

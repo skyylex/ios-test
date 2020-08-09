@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 final class ActivityFeedTableViewDelegate: NSObject, UITableViewDelegate {
-    var output: ActivityFeedViewOutputs!
-    var sectionTitles = [String]() 
+    var sectionTitles = [String]()
+    var forwardSelectionAction: (IndexPath) -> Void = { _ in }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        output.callSelected(at: indexPath)
+        forwardSelectionAction(indexPath)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

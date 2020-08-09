@@ -18,13 +18,15 @@ struct ActivityFeedItem {
     var phoneNumber: String
     var time: String
     var details: String
+    
+    var userInfo: Any?
 }
 
 protocol ActivityFeedViewInputs: class {
     func setFeedSections(sections: [ActivityFeedSection])
 }
 protocol ActivityFeedViewOutputs {
-    func callSelected(at indexPath: IndexPath)
+    func callSelected(_ call: ActivityFeedItem)
     
     func viewDidAppear()
     func viewDidDisappear()
@@ -45,8 +47,6 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
         precondition(tableView != nil, "UITableView should be already created in viewDidLoad")
         
         super.viewDidLoad()
-        
-        delegate.output = output
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,6 +90,13 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
     func setFeedSections(sections: [ActivityFeedSection]) {
         dataSource.sections = sections
         delegate.sectionTitles = sections.map { $0.title }
+        delegate.forwardSelectionAction = { [weak self] indexPath in
+            guard let self = self else { return }
+            
+            let item = sections[indexPath.section].items[indexPath.row]
+            
+            self.output.callSelected(item)
+        }
         
         tableView.reloadData()
     }
