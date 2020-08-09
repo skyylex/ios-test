@@ -11,9 +11,15 @@ import Foundation
 protocol CallDetailsPresenterOutputs {
     var call: CallDetails { get }
 }
-protocol CallDetailsPresenterInputs {}
 
-final class CallDetailsPresenter: CallDetailsPresenterInputs, CallDetailsViewOutputs {
+final class CallDetailsPresenter: CallDetailsViewOutputs {
+    
+    private var timeFormatter: DateFormatter = {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "h:mm a"
+        return timeFormatter
+    }()
+    
     weak var view: CallDetailsViewInputs?
     let router: CallDetailsRouterInputs
     let output: CallDetailsPresenterOutputs
@@ -24,5 +30,13 @@ final class CallDetailsPresenter: CallDetailsPresenterInputs, CallDetailsViewOut
         self.view = view
         self.router = router
         self.output = output
+    }
+    
+    func viewWillAppear() {
+        let title = (output.call.direction == .inbound) ? output.call.from : output.call.to ?? ""
+        view?.setHeaderTitle(title)
+        view?.setCompactInfoDetails(phoneNumber: title,
+                                    detailsText: output.call.type.rawValue,
+                                    timeText: timeFormatter.string(from: output.call.creationDate))
     }
 }

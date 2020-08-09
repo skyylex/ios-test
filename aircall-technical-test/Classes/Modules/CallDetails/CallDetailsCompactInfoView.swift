@@ -1,30 +1,23 @@
 //
-//  ActivityFeedCell.swift
+//  CallDetailsCompactInfoView.swift
 //  aircall-technical-test
 //
-//  Created by Yury Lapitsky on 08/08/2020.
+//  Created by Yury Lapitsky on 09/08/2020.
 //  Copyright © 2020 Yury Lapitsky. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-final class ActivityFeedCell: UITableViewCell {
-    enum Position {
-        case top
-        case middle
-        case bottom
-        case single
-    }
-    
-    func setup(position: Position, cellModel: ActivityFeedItem) {
-        let phoneNumberLabel = createPhoneNumberLabel(phoneNumber: cellModel.phoneNumber)
-        let detailsLabel = createDetailsLabel(details: cellModel.details)
-        let timeLabel = createTimeLabel(time: cellModel.time)
+class CallDetailsCompactInfoView: UIView {
+    func setup(phoneNumber: String, detailsText: String, timeText: String) {
+        let phoneNumberLabel = createPhoneNumberLabel(phoneNumber: phoneNumber)
+        let detailsLabel = createDetailsLabel(details: detailsText)
+        let timeLabel = createTimeLabel(time: timeText)
         
-        setupStyle(position: position)
+        setupStyle()
         
-        [phoneNumberLabel, detailsLabel, timeLabel].forEach { contentView.addSubview($0) }
+        [phoneNumberLabel, detailsLabel, timeLabel].forEach { addSubview($0) }
         
         NSLayoutConstraint.activate(phoneNumberLabelConstraints(with: phoneNumberLabel))
         NSLayoutConstraint.activate(timeLabelConstraints(with: timeLabel))
@@ -32,24 +25,13 @@ final class ActivityFeedCell: UITableViewCell {
                                                             phoneNumberLabel: phoneNumberLabel))
     }
     
-    func setupStyle(position: Position) {
+    func setupStyle() {
         backgroundColor = UIColor.lightGray251()
-        contentView.backgroundColor = UIColor.white
-        selectionStyle = .none
         
-        switch position {
-        case .top:
-            contentView.layer.cornerRadius = 20.0
-            contentView.layer.maskedCorners = .init([.layerMinXMinYCorner])
-        case .bottom:
-            contentView.layer.cornerRadius = 20.0
-            contentView.layer.maskedCorners = .init([.layerMinXMaxYCorner])
-        case .middle:
-            break;
-        case .single:
-            contentView.layer.cornerRadius = 20.0
-            contentView.layer.maskedCorners = .init([.layerMinXMaxYCorner, .layerMinXMinYCorner])
-        }
+        layer.borderColor = UIColor.lightGray235().cgColor
+        layer.borderWidth = 2.0
+        layer.cornerRadius = 20.0
+        layer.maskedCorners = .init([.layerMinXMaxYCorner, .layerMinXMinYCorner])
     }
     
     // MARK: Labels
@@ -85,9 +67,9 @@ final class ActivityFeedCell: UITableViewCell {
     func phoneNumberLabelConstraints(with phoneNumberLabel: UILabel) -> [NSLayoutConstraint] {
         return [
             phoneNumberLabel.nonRequiredHeightConstraint(constant: 20),
-            phoneNumberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+            phoneNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                       constant: 40),
-            phoneNumberLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
+            phoneNumberLabel.topAnchor.constraint(equalTo: topAnchor,
                                                   constant: 10),
         ]
     }
@@ -98,15 +80,18 @@ final class ActivityFeedCell: UITableViewCell {
             detailsLabel.nonRequiredHeightConstraint(constant: 20),
             detailsLabel.leadingAnchor.constraint(equalTo: phoneNumberLabel.leadingAnchor, constant: 0),
             detailsLabel.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 0),
-            detailsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            detailsLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                                 constant: -10),
         ]
     }
     
     func timeLabelConstraints(with timeLabel: UILabel) -> [NSLayoutConstraint] {
         return [
             timeLabel.nonRequiredHeightConstraint(constant: 20),
-            timeLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0),
-            timeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
+            timeLabel.centerYAnchor.constraint(equalTo: centerYAnchor,
+                                               constant: 0),
+            timeLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                constant: -40),
         ]
     }
 }

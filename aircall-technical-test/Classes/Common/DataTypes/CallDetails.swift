@@ -29,6 +29,6 @@ struct CallDetails {
     let to: String?
     let via: String
     let duration: Int
-    var isArchived: Bool
+    let isArchived: Bool
     let type: CallType
 }

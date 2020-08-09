@@ -10,6 +10,14 @@ import Foundation
 import UIKit
 
 extension UIColor {
+    class func blue142() -> UIColor {
+        return UIColor(
+            red: 28.0 / 255.0,
+            green: 142.0 / 255.0,
+            blue: 186.0 / 255.0,
+            alpha: 1.0
+        )
+    }
     
     class func gray184() -> UIColor {
         return UIColor(
@@ -25,6 +33,15 @@ extension UIColor {
             red: 253.0 / 255.0,
             green: 251.0 / 255.0,
             blue: 251.0 / 255.0,
+            alpha: 1.0
+        )
+    }
+    
+    class func lightGray235() -> UIColor {
+        return UIColor(
+            red: 235.0 / 255.0,
+            green: 235.0 / 255.0,
+            blue: 235.0 / 255.0,
             alpha: 1.0
         )
     }

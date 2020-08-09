@@ -11,7 +11,9 @@ import UIKit
 
 extension ActivityFeedCell.Position {
     static func position(from row: Int, numberOfItems: Int) -> ActivityFeedCell.Position {
-        if row == 0 {
+        if row == 0 && numberOfItems == 1 {
+            return .single
+        } else if row == 0 {
             return .top
         } else if row == numberOfItems - 1 {
             return .bottom
