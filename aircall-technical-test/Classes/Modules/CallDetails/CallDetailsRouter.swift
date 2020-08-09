@@ -12,8 +12,8 @@ import UIKit
 protocol CallDetailsRouterInputs {}
 
 final class CallDetailsRouter: CallDetailsRouterInputs {
-    let navigationController: UINavigationController
-    init(navigationController: UINavigationController) {
+    let navigationController: NavigationController
+    init(navigationController: NavigationController) {
         self.navigationController = navigationController
     }
     

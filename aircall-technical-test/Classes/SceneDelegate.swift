@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navigationVC = UINavigationController(rootViewController: UIViewController())
         
-        let router = ActivityFeedRouter(navigationController: navigationVC)
+        let proxy = NavigationControllerProxy(navigationController: navigationVC)
+        let router = ActivityFeedRouter(navigationController: proxy)
         router.start()
         
         window?.rootViewController = navigationVC

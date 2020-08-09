@@ -13,10 +13,15 @@ protocol ActivityFeedRouterInputs {
     func showCallDetails(call: CallDetails)
 }
 
+protocol NavigationController {
+    func pushViewController(_ viewController: UIViewController, animated: Bool)
+    func setViewControllers(_ viewControllers: [UIViewController], animated: Bool)
+}
+
 final class ActivityFeedRouter: ActivityFeedRouterInputs {
-    let navigationController: UINavigationController
+    let navigationController: NavigationController
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: NavigationController) {
         self.navigationController = navigationController
     }
     

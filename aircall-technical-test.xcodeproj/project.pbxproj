@@ -11,7 +11,7 @@
 		422C531424E0489B00484C84 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422C531324E0489B00484C84 /* NetworkService.swift */; };
 		422C531924E048E100484C84 /* CallDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422C531824E048E100484C84 /* CallDTO.swift */; };
 		422C531E24E0499800484C84 /* CallDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422C531D24E0499800484C84 /* CallDetails.swift */; };
-		422FA13B24DC976F0080BFF2 /* aircall_technical_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FA13A24DC976F0080BFF2 /* aircall_technical_testTests.swift */; };
+		422FA13B24DC976F0080BFF2 /* ActivityFeedRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FA13A24DC976F0080BFF2 /* ActivityFeedRouteTests.swift */; };
 		4246947524DF47A800809C82 /* ActivityFeedTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246947424DF47A800809C82 /* ActivityFeedTableViewDataSource.swift */; };
 		4246947724DF47E700809C82 /* ActivityFeedTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246947624DF47E700809C82 /* ActivityFeedTableViewDelegate.swift */; };
 		4246947924DF48A000809C82 /* ActivityFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246947824DF48A000809C82 /* ActivityFeedPresenter.swift */; };
@@ -22,6 +22,8 @@
 		4246948324DFB54800809C82 /* CallDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246948224DFB54800809C82 /* CallDetailsInteractor.swift */; };
 		424D0C1724E069C20041992B /* CallDetailsCompactInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424D0C1624E069C20041992B /* CallDetailsCompactInfoView.swift */; };
 		424D0C1924E06A8D0041992B /* UIView+NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424D0C1824E06A8D0041992B /* UIView+NSLayoutConstraint.swift */; };
+		424D0C1B24E08D3C0041992B /* NavigationControllerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424D0C1A24E08D3C0041992B /* NavigationControllerProxy.swift */; };
+		424D0C1D24E08F810041992B /* CallDetailsRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424D0C1C24E08F810041992B /* CallDetailsRouterTests.swift */; };
 		42FB70F024DC999A004878F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB70ED24DC999A004878F4 /* AppDelegate.swift */; };
 		42FB70F124DC999A004878F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB70EE24DC999A004878F4 /* SceneDelegate.swift */; };
 		42FB70FA24DC99A6004878F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42FB70F324DC99A5004878F4 /* Assets.xcassets */; };
@@ -49,7 +51,7 @@
 		422FA11D24DC976D0080BFF2 /* aircall-technical-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "aircall-technical-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		422FA13124DC976F0080BFF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		422FA13624DC976F0080BFF2 /* aircall-technical-testTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "aircall-technical-testTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		422FA13A24DC976F0080BFF2 /* aircall_technical_testTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aircall_technical_testTests.swift; sourceTree = "<group>"; };
+		422FA13A24DC976F0080BFF2 /* ActivityFeedRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedRouteTests.swift; sourceTree = "<group>"; };
 		422FA13C24DC976F0080BFF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4246947424DF47A800809C82 /* ActivityFeedTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedTableViewDataSource.swift; sourceTree = "<group>"; };
 		4246947624DF47E700809C82 /* ActivityFeedTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedTableViewDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,8 @@
 		4246948224DFB54800809C82 /* CallDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDetailsInteractor.swift; sourceTree = "<group>"; };
 		424D0C1624E069C20041992B /* CallDetailsCompactInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDetailsCompactInfoView.swift; sourceTree = "<group>"; };
 		424D0C1824E06A8D0041992B /* UIView+NSLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NSLayoutConstraint.swift"; sourceTree = "<group>"; };
+		424D0C1A24E08D3C0041992B /* NavigationControllerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerProxy.swift; sourceTree = "<group>"; };
+		424D0C1C24E08F810041992B /* CallDetailsRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDetailsRouterTests.swift; sourceTree = "<group>"; };
 		42FB70ED24DC999A004878F4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42FB70EE24DC999A004878F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		42FB70F324DC99A5004878F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,7 +161,8 @@
 		422FA13924DC976F0080BFF2 /* aircall-technical-testTests */ = {
 			isa = PBXGroup;
 			children = (
-				422FA13A24DC976F0080BFF2 /* aircall_technical_testTests.swift */,
+				422FA13A24DC976F0080BFF2 /* ActivityFeedRouteTests.swift */,
+				424D0C1C24E08F810041992B /* CallDetailsRouterTests.swift */,
 				422FA13C24DC976F0080BFF2 /* Info.plist */,
 			);
 			path = "aircall-technical-testTests";
@@ -219,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				7CC0FA6B24DDF6AA00A07271 /* Colors.swift */,
+				424D0C1A24E08D3C0041992B /* NavigationControllerProxy.swift */,
 				424D0C1824E06A8D0041992B /* UIView+NSLayoutConstraint.swift */,
 			);
 			path = Utilities;
@@ -329,6 +335,7 @@
 				424D0C1724E069C20041992B /* CallDetailsCompactInfoView.swift in Sources */,
 				7CC0FA6C24DDF6AA00A07271 /* Colors.swift in Sources */,
 				4246947724DF47E700809C82 /* ActivityFeedTableViewDelegate.swift in Sources */,
+				424D0C1B24E08D3C0041992B /* NavigationControllerProxy.swift in Sources */,
 				4246948124DFB3B900809C82 /* CallDetailsViewController.swift in Sources */,
 				424D0C1924E06A8D0041992B /* UIView+NSLayoutConstraint.swift in Sources */,
 				7C0638B524DDDEF300DF0B6C /* ActivityFeedRouter.swift in Sources */,
@@ -350,7 +357,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422FA13B24DC976F0080BFF2 /* aircall_technical_testTests.swift in Sources */,
+				422FA13B24DC976F0080BFF2 /* ActivityFeedRouteTests.swift in Sources */,
+				424D0C1D24E08F810041992B /* CallDetailsRouterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
