@@ -87,18 +87,53 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
     }
     
     // MARK: ActivityFeedViewInputs
+    var isLoading: Bool = false {
+        didSet {
+            if (self.isLoading && tableView.tableHeaderView == nil) {
+                let indicator = UIActivityIndicatorView(style: .medium)
+                indicator.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
+                tableView.tableHeaderView = indicator
+                indicator.startAnimating()
+            } else {
+                tableView.tableHeaderView = nil
+            }
+        }
+    }
+    
+    private var updateUIAction: (() -> Void)?
     func setFeedSections(sections: [ActivityFeedSection]) {
-        dataSource.sections = sections
-        delegate.sectionTitles = sections.map { $0.title }
-        delegate.forwardSelectionAction = { [weak self] indexPath in
+        precondition(Thread.isMainThread, "Main thread is required to update UI")
+        
+        isLoading = true
+        
+        // Avoid scheduling if already scheduled an update, just replace what is updated
+        let shouldScheduleUpdate = updateUIAction == nil
+        updateUIAction = { [weak self] in
             guard let self = self else { return }
             
-            let item = sections[indexPath.section].items[indexPath.row]
+            self.isLoading = false
             
-            self.output.callSelected(item)
+            self.dataSource.sections = sections
+            self.delegate.sectionTitles = sections.map { $0.title }
+            self.delegate.forwardSelectionAction = { [weak self] indexPath in
+                guard let self = self else { return }
+                
+                let item = sections[indexPath.section].items[indexPath.row]
+                
+                self.output.callSelected(item)
+            }
+            
+            self.tableView.reloadData()
         }
         
-        tableView.reloadData()
+        if (shouldScheduleUpdate) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) { [weak self] in
+                guard let self = self else { return }
+                if let action = self.updateUIAction {
+                    action()
+                }
+            }
+        }
     }
     
     private(set) var didAppear: Bool = false
