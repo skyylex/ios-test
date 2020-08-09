@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4227C3B824DF43EC00F9CB2B /* ActivityFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227C3B724DF43EC00F9CB2B /* ActivityFeedCell.swift */; };
+		422C531424E0489B00484C84 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422C531324E0489B00484C84 /* NetworkService.swift */; };
+		422C531924E048E100484C84 /* CallDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422C531824E048E100484C84 /* CallDTO.swift */; };
+		422C531E24E0499800484C84 /* CallDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422C531D24E0499800484C84 /* CallDetails.swift */; };
 		422FA13B24DC976F0080BFF2 /* aircall_technical_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FA13A24DC976F0080BFF2 /* aircall_technical_testTests.swift */; };
 		4246947524DF47A800809C82 /* ActivityFeedTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246947424DF47A800809C82 /* ActivityFeedTableViewDataSource.swift */; };
 		4246947724DF47E700809C82 /* ActivityFeedTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4246947624DF47E700809C82 /* ActivityFeedTableViewDelegate.swift */; };
@@ -38,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		4227C3B724DF43EC00F9CB2B /* ActivityFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCell.swift; sourceTree = "<group>"; };
+		422C531324E0489B00484C84 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		422C531824E048E100484C84 /* CallDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDTO.swift; sourceTree = "<group>"; };
+		422C531D24E0499800484C84 /* CallDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDetails.swift; sourceTree = "<group>"; };
 		422FA11D24DC976D0080BFF2 /* aircall-technical-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "aircall-technical-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		422FA13124DC976F0080BFF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		422FA13624DC976F0080BFF2 /* aircall-technical-testTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "aircall-technical-testTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +95,33 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		422C531224E0487B00484C84 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				422C531C24E0494A00484C84 /* Services */,
+				7CC0FA6A24DDF69400A07271 /* Utilities */,
+				422C531724E048C500484C84 /* DataTypes */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		422C531724E048C500484C84 /* DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+				422C531824E048E100484C84 /* CallDTO.swift */,
+				422C531D24E0499800484C84 /* CallDetails.swift */,
+			);
+			path = DataTypes;
+			sourceTree = "<group>";
+		};
+		422C531C24E0494A00484C84 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				422C531324E0489B00484C84 /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		422FA11424DC976D0080BFF2 = {
 			isa = PBXGroup;
 			children = (
@@ -129,10 +162,10 @@
 		42FB70EB24DC999A004878F4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				422C531224E0487B00484C84 /* Common */,
 				42FB70FE24DCA7D7004878F4 /* Modules */,
 				42FB70ED24DC999A004878F4 /* AppDelegate.swift */,
 				42FB70EE24DC999A004878F4 /* SceneDelegate.swift */,
-				7CC0FA6A24DDF69400A07271 /* Utilities */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -295,9 +328,12 @@
 				4246947524DF47A800809C82 /* ActivityFeedTableViewDataSource.swift in Sources */,
 				4246948324DFB54800809C82 /* CallDetailsInteractor.swift in Sources */,
 				4246947D24DFB30400809C82 /* CallDetailsPresenter.swift in Sources */,
+				422C531424E0489B00484C84 /* NetworkService.swift in Sources */,
+				422C531924E048E100484C84 /* CallDTO.swift in Sources */,
 				42FB70F124DC999A004878F4 /* SceneDelegate.swift in Sources */,
 				4246947F24DFB33200809C82 /* CallDetailsRouter.swift in Sources */,
 				7CC0FA6924DDF4A600A07271 /* ActivityFeedViewController.swift in Sources */,
+				422C531E24E0499800484C84 /* CallDetails.swift in Sources */,
 				4246947924DF48A000809C82 /* ActivityFeedPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
