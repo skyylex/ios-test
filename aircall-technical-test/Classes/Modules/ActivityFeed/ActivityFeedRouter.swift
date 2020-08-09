@@ -21,9 +21,9 @@ final class ActivityFeedRouter: ActivityFeedRouterInputs {
     }
     
     func start() {
-        
         let viewController = ActivityFeedViewController()
-        let presenter = ActivityFeedPresenter(view: viewController, router: self)
+        let interactor = ActivityFeedInteractor()
+        let presenter = ActivityFeedPresenter(view: viewController, router: self, output: interactor)
         
         viewController.output = presenter
         

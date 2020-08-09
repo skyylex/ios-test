@@ -20,20 +20,17 @@ struct ActivityFeedItem {
     var details: String
 }
 
-protocol ActivityFeedViewInputs {
+protocol ActivityFeedViewInputs: class {
     func setFeedSections(sections: [ActivityFeedSection])
 }
 protocol ActivityFeedViewOutputs {
     func callSelected(at indexPath: IndexPath)
+    
+    func viewDidAppear()
+    func viewDidDisappear()
 }
 
 final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs {
-    // MARK: ActivityFeedViewInputs
-    func setFeedSections(sections: [ActivityFeedSection]) {
-        self.dataSource.sections = sections
-        self.delegate.sectionTitles = sections.map { $0.title }
-    }
-    
     var output: ActivityFeedViewOutputs!
     let dataSource = ActivityFeedTableViewDataSource()
     let delegate = ActivityFeedTableViewDelegate()
@@ -50,6 +47,18 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
         super.viewDidLoad()
         
         delegate.output = output
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        output.viewDidAppear()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        output.viewDidDisappear()
     }
     
     func createView() -> UIView {
@@ -76,4 +85,14 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
         
         return view
     }
+    
+    // MARK: ActivityFeedViewInputs
+    func setFeedSections(sections: [ActivityFeedSection]) {
+        dataSource.sections = sections
+        delegate.sectionTitles = sections.map { $0.title }
+        
+        tableView.reloadData()
+    }
+    
+    private(set) var didAppear: Bool = false
 }

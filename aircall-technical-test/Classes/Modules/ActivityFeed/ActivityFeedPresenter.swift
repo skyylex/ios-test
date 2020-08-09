@@ -8,47 +8,137 @@
 
 import Foundation
 
-final class ActivityFeedPresenter: ActivityFeedViewOutputs {
-    let view: ActivityFeedViewInputs
-    let router: ActivityFeedRouterInputs
+enum Direction: String {
+    case inbound = "inbound"
+    case outbound = "outbound"
+}
+
+enum CallType: String {
+    case missed = "missed"
+    case answered = "answered"
+    case voicemail = "voicemail"
+}
+
+struct CallDetails {
     
-    init(view: ActivityFeedViewInputs, router: ActivityFeedRouterInputs) {
+    let id: Int
+    let creationDate: Date
+    let direction: Direction
+    let from: String
+    let to: String?
+    let via: String
+    let duration: Int
+    var isArchived: Bool
+    let type: CallType
+}
+
+protocol ActivityFeedPresenterOutputs {
+    func fetchActivityFeed(completion: @escaping (Result<[CallDetails], Error>) -> Void)
+}
+
+final class ActivityFeedPresenter: ActivityFeedViewOutputs {
+    private weak var view: ActivityFeedViewInputs?
+    private let router: ActivityFeedRouterInputs
+    private let output: ActivityFeedPresenterOutputs
+    private var onDidAppearAction = {}
+    private var canUpdateView: Bool = false
+    
+    init(view: ActivityFeedViewInputs,
+         router: ActivityFeedRouterInputs,
+         output: ActivityFeedPresenterOutputs) {
         self.view = view
         self.router = router
+        self.output = output
         
-        view.setFeedSections(sections: [
-            ActivityFeedSection(
-                title: "TODAY",
-                items: [
-                    ActivityFeedItem(phoneNumber: "+1-315-643-321",
-                                     time: "12:18 PM",
-                                     details: "left a voicemail"),
-                    ActivityFeedItem(phoneNumber: "+1-315-233-321",
-                                     time: "3:18 PM",
-                                     details: "by Kalvin. B (you)"),
-                    ActivityFeedItem(phoneNumber: "+1-323-233-321",
-                                     time: "10:18 PM",
-                                     details: "missed call"),
-            ]),
-            ActivityFeedSection(
-                title: "YESTERDAY",
-                items: [
-                    ActivityFeedItem(phoneNumber: "+1-315-643-321",
-                                     time: "13:18 PM",
-                                     details: "left a voicemail"),
-                    ActivityFeedItem(phoneNumber: "+1-315-233-321",
-                                     time: "4:18 PM",
-                                     details: "by Kalvin. B (you)"),
-                    ActivityFeedItem(phoneNumber: "+1-323-233-321",
-                                     time: "11:18 PM",
-                                     details: "missed call"),
-            ])
-        ])
+        output.fetchActivityFeed { [weak self] result in
+            switch result {
+            case .success(let calls):
+                self?.updateView(with: calls)
+            case .failure(let error):
+                self?.updateView(with: [])
+            }
+        }
+    }
+    
+    func viewDidAppear() {
+        canUpdateView = true
+        
+        onDidAppearAction()
+    }
+    
+    func viewDidDisappear() {
+        canUpdateView = false
+    }
+    
+    private func updateView(with calls: [CallDetails]) {
+        let sections = map(calls: calls)
+        let updateViewAction = {
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.setFeedSections(sections: sections)
+            }
+        }
+        
+        if canUpdateView {
+            updateViewAction()
+        } else {
+            onDidAppearAction = updateViewAction
+        }
     }
     
     // MARK: ActivityFeedViewOutputs
     func callSelected(at indexPath: IndexPath) {
         // TODO: provide real call object
         router.showCallDetails()
+    }
+    
+}
+
+private extension ActivityFeedPresenter {
+    func secondsOfDateRoundedToMidnight(date: Date) -> Int {
+        let dateInSeconds = Int(date.timeIntervalSince1970)
+        let timeInSeconds = Int(dateInSeconds) % 3600 * 24
+        return dateInSeconds - timeInSeconds
+    }
+    
+    func map(calls: [CallDetails]) -> [ActivityFeedSection] {
+        let todaysMidnightInSeconds = Int(Date().timeIntervalSince1970)
+        let yesterdaysMidnightInSeconds = todaysMidnightInSeconds - 3600 * 24
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "h:mm a"
+        
+        let callsMap = calls.reduce([Int : [ActivityFeedItem]]()) { (combined, current) -> [Int : [ActivityFeedItem]] in
+            let time = timeFormatter.string(from: current.creationDate)
+            let phone = current.from
+            
+            let item = ActivityFeedItem(phoneNumber: phone,
+                                        time: time,
+                                        details: current.type.rawValue)
+            let key = secondsOfDateRoundedToMidnight(date: current.creationDate)
+            
+            let otherItems = combined[key] ?? []
+            var mutableCallsMap = combined
+            mutableCallsMap[key] = otherItems + [item]
+            return mutableCallsMap
+        }
+        
+        return callsMap.map { (arg) -> ActivityFeedSection in
+            
+            let (dateSeconds, calls) = arg
+            
+            switch dateSeconds {
+            case todaysMidnightInSeconds:
+                return ActivityFeedSection(title: "TODAY", items: calls)
+            case yesterdaysMidnightInSeconds:
+                return ActivityFeedSection(title: "YESTERDAY", items: calls)
+            default:
+                let date = Date(timeIntervalSince1970: TimeInterval(dateSeconds))
+                let title = dateFormatter.string(from: date)
+                return ActivityFeedSection(title: title, items: calls)
+            }
+        }
     }
 }
