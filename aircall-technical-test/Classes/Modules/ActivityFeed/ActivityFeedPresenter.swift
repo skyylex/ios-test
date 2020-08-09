@@ -30,6 +30,7 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
         requestUpdate()
     }
     
+    // MARK: ActivityFeedViewOutputs
     func viewDidAppear() {
         canUpdateView = true
         
@@ -42,22 +43,6 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
         canUpdateView = false
     }
     
-    private func updateView(with calls: [CallDetails]) {
-        let sections = mapper.map(calls: calls)
-        let updateViewAction = {
-            DispatchQueue.main.async { [weak self] in
-                self?.view?.setFeedSections(sections: sections)
-            }
-        }
-        
-        if canUpdateView {
-            updateViewAction()
-        } else {
-            onDidAppearAction = updateViewAction
-        }
-    }
-    
-    // MARK: ActivityFeedViewOutputs
     func callSelected(_ call: ActivityFeedItem) {
         guard let callDetails = call.userInfo as? CallDetails else {
             preconditionFailure("ActivityFeedItem should keep call details")
@@ -74,6 +59,23 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
             case .failure(_):
                 self?.updateView(with: [])
             }
+        }
+    }
+    
+    // MARK: Private
+    
+    private func updateView(with calls: [CallDetails]) {
+        let sections = mapper.map(calls: calls)
+        let updateViewAction = {
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.setFeedSections(sections: sections)
+            }
+        }
+        
+        if canUpdateView {
+            updateViewAction()
+        } else {
+            onDidAppearAction = updateViewAction
         }
     }
     
