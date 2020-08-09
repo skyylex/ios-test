@@ -54,7 +54,7 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
             switch result {
             case .success(let calls):
                 self?.updateView(with: calls)
-            case .failure(let error):
+            case .failure(_):
                 self?.updateView(with: [])
             }
         }
@@ -70,9 +70,11 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
         canUpdateView = false
     }
     
+    private let mapper = ActivityFeedMapper()
+    
     /// Cached calls should be used only for Routing
     private func updateView(with calls: [CallDetails]) {
-        let sections = map(calls: calls)
+        let sections = mapper.map(calls: calls)
         let updateViewAction = {
             DispatchQueue.main.async { [weak self] in
                 self?.view?.setFeedSections(sections: sections)
@@ -97,47 +99,76 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
     
 }
 
-private extension ActivityFeedPresenter {
-    func secondsOfDateRoundedToMidnight(date: Date) -> Int {
+final class ActivityFeedMapper {
+    private static let numberOfSecondsPerDay = (3600 * 24)
+    
+    private var todayMidnightInSeconds: Int {
+        return secondsOfDateRoundedToMidnight(date: Date())
+    }
+    
+    private var yesterdayMidnightInSeconds: Int {
+        return todayMidnightInSeconds - ActivityFeedMapper.numberOfSecondsPerDay
+    }
+    
+    private var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+        return dateFormatter
+    }()
+    
+    private var timeFormatter: DateFormatter = {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "h:mm a"
+        return timeFormatter
+    }()
+    
+    private func secondsOfDateRoundedToMidnight(date: Date) -> Int {
         let dateInSeconds = Int(date.timeIntervalSince1970)
-        let timeInSeconds = Int(dateInSeconds) % (3600 * 24)
+        let timeInSeconds = Int(dateInSeconds) % ActivityFeedMapper.numberOfSecondsPerDay
         return dateInSeconds - timeInSeconds
     }
     
+    typealias SpecificDayInSeconds = Int
+    typealias CombinedFeedItems = [SpecificDayInSeconds : [ActivityFeedItem]]
+    
+    private func feedItem(from call: CallDetails, timeFormatter: DateFormatter) -> ActivityFeedItem {
+        let time = timeFormatter.string(from: call.creationDate)
+        let phone = call.from
+        
+        return ActivityFeedItem(phoneNumber: phone,
+                                time: time,
+                                details: call.type.rawValue,
+                                userInfo: call)
+    }
+    
+    /// Combines calls by specific day (represented as midnight in seconds)
+    private func combine(calls: [CallDetails]) -> CombinedFeedItems {
+        return calls.reduce(CombinedFeedItems()) { (combinedCalls, call) -> CombinedFeedItems in
+            let item = feedItem(from: call, timeFormatter: timeFormatter)
+            let specificDayInSeconds = secondsOfDateRoundedToMidnight(date: call.creationDate)
+            
+            let otherItems = combinedCalls[specificDayInSeconds] ?? []
+            var mutableCombinedCalls = combinedCalls
+            mutableCombinedCalls[specificDayInSeconds] = otherItems + [item]
+            return mutableCombinedCalls
+        }
+    }
+    
     func map(calls: [CallDetails]) -> [ActivityFeedSection] {
-        let todaysMidnightInSeconds = Int(Date().timeIntervalSince1970)
-        let yesterdaysMidnightInSeconds = todaysMidnightInSeconds - 3600 * 24
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
-        
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "h:mm a"
-        
-        let callsMap = calls.reduce([Int : [ActivityFeedItem]]()) { (combined, current) -> [Int : [ActivityFeedItem]] in
-            let time = timeFormatter.string(from: current.creationDate)
-            let phone = current.from
-            
-            let item = ActivityFeedItem(phoneNumber: phone,
-                                        time: time,
-                                        details: current.type.rawValue,
-                                        userInfo: current)
-            let key = secondsOfDateRoundedToMidnight(date: current.creationDate)
-            
-            let otherItems = combined[key] ?? []
-            var mutableCallsMap = combined
-            mutableCallsMap[key] = otherItems + [item]
-            return mutableCallsMap
+        let combinedCalls = combine(calls: calls)
+        let sortedCalls = combinedCalls.sorted { (pair1, pair2) -> Bool in
+            let (dayInSeconds1, _) = pair1
+            let (dayInSeconds2, _) = pair2
+            return dayInSeconds1 > dayInSeconds2
         }
         
-        return callsMap.map { (arg) -> ActivityFeedSection in
-            
-            let (dateSeconds, calls) = arg
+        return sortedCalls.map { (pair) -> ActivityFeedSection in
+            let (dateSeconds, calls) = pair
             
             switch dateSeconds {
-            case todaysMidnightInSeconds:
+            case todayMidnightInSeconds:
                 return ActivityFeedSection(title: "TODAY", items: calls)
-            case yesterdaysMidnightInSeconds:
+            case yesterdayMidnightInSeconds:
                 return ActivityFeedSection(title: "YESTERDAY", items: calls)
             default:
                 let date = Date(timeIntervalSince1970: TimeInterval(dateSeconds))
