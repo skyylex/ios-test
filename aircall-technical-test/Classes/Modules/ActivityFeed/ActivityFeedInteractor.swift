@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NetworkRequestBuilder {
+final class NetworkRequestBuilder {
     let allActivitiesURLString: String = "https://aircall-job.herokuapp.com/activities"
     
     func buildAllActivitiesRequest() -> URLRequest? {
@@ -47,7 +47,7 @@ struct CallDTO: Decodable {
     }
 }
 
-class NetworkService {
+final class NetworkService {
     private let requestBuilder: NetworkRequestBuilder
     
     init(requestBuilder: NetworkRequestBuilder = NetworkRequestBuilder()) {

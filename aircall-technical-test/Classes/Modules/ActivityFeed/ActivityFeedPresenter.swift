@@ -42,6 +42,7 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
     private let output: ActivityFeedPresenterOutputs
     private var onDidAppearAction = {}
     private var canUpdateView: Bool = false
+    private let mapper = ActivityFeedMapper()
     
     init(view: ActivityFeedViewInputs,
          router: ActivityFeedRouterInputs,
@@ -70,9 +71,6 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
         canUpdateView = false
     }
     
-    private let mapper = ActivityFeedMapper()
-    
-    /// Cached calls should be used only for Routing
     private func updateView(with calls: [CallDetails]) {
         let sections = mapper.map(calls: calls)
         let updateViewAction = {
