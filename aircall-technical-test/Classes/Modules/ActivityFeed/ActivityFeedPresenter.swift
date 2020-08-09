@@ -100,7 +100,7 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
 private extension ActivityFeedPresenter {
     func secondsOfDateRoundedToMidnight(date: Date) -> Int {
         let dateInSeconds = Int(date.timeIntervalSince1970)
-        let timeInSeconds = Int(dateInSeconds) % 3600 * 24
+        let timeInSeconds = Int(dateInSeconds) % (3600 * 24)
         return dateInSeconds - timeInSeconds
     }
     
