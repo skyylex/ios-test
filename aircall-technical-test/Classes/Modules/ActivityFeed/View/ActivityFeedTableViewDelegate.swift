@@ -11,10 +11,10 @@ import UIKit
 
 final class ActivityFeedTableViewDelegate: NSObject, UITableViewDelegate {
     var sectionTitles = [String]()
-    var forwardSelectionAction: (IndexPath) -> Void = { _ in }
+    var selectionAction: (IndexPath) -> Void = { _ in }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        forwardSelectionAction(indexPath)
+        selectionAction(indexPath)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

@@ -26,11 +26,13 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
         self.view = view
         self.router = router
         self.output = output
-        
-        requestUpdate()
     }
     
     // MARK: ActivityFeedViewOutputs
+    func viewWillAppear() {
+        requestUpdate()
+    }
+    
     func viewDidAppear() {
         canUpdateView = true
         
@@ -52,6 +54,7 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
     }
     
     func requestUpdate() {
+        view?.loadingStarted()
         output.fetchActivityFeed { [weak self] result in
             switch result {
             case .success(let calls):

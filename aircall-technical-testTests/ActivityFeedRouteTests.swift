@@ -32,8 +32,6 @@ final class ActivityFeedRouteTests: XCTestCase {
     }
     
     func testShowCallDetails() {
-        UIView.setAnimationsEnabled(false)
-        
         let navigationController = NavigationControllerMock()
         let router = ActivityFeedRouter(navigationController: navigationController)
         router.start()

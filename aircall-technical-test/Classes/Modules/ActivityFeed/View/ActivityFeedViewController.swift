@@ -23,6 +23,7 @@ struct ActivityFeedItem {
 }
 
 protocol ActivityFeedViewInputs: class {
+    func loadingStarted()
     func setFeedSections(sections: [ActivityFeedSection])
     func setPullControlTitle(title: NSAttributedString)
 }
@@ -31,18 +32,45 @@ protocol ActivityFeedViewOutputs {
     func callSelected(_ call: ActivityFeedItem)
     func requestUpdate()
     
+    func viewWillAppear()
     func viewDidAppear()
     func viewDidDisappear()
 }
 
 final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs {
     var output: ActivityFeedViewOutputs!
-    let dataSource = ActivityFeedTableViewDataSource()
-    let delegate = ActivityFeedTableViewDelegate()
-    var tableView: UITableView!
+    
+    private let dataSource = ActivityFeedTableViewDataSource()
+    private let delegate = ActivityFeedTableViewDelegate()
+    private var tableView: UITableView!
+    private var scheduledUpdateUIAction: (() -> Void)?
     
     override func loadView() {
-        view = createView()
+        view = UIView()
+        tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = UIColor.lightGray251()
+        tableView.separatorStyle = .singleLine
+        tableView.delegate = delegate
+        tableView.dataSource = dataSource
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 40
+        tableView.tableFooterView = UIView()
+        
+        refreshControl.addTarget(self,
+                                 action: #selector(requestUpdate),
+                                 for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
+        view.backgroundColor = UIColor.lightGray251()
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 0),
+            view.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 0),
+            view.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: 0),
+            view.bottomAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 0),
+        ])
     }
     
     override func viewDidLoad() {
@@ -50,6 +78,12 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
         precondition(tableView != nil, "UITableView should be already created in viewDidLoad")
         
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        output.viewWillAppear()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,52 +98,48 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
         output.viewDidDisappear()
     }
     
-    func createView() -> UIView {
-        let view = UIView()
-        tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = UIColor.lightGray251()
-        tableView.separatorStyle = .singleLine
-        tableView.delegate = delegate
-        tableView.dataSource = dataSource
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 40
-        tableView.tableFooterView = UIView()
-        
-        refreshControl.addTarget(self, action: #selector(requestUpdate), for: .valueChanged)
-        tableView.refreshControl = refreshControl
-        
-        view.backgroundColor = UIColor.lightGray251()
-        view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 0),
-            view.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 0),
-            view.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: 0),
-            view.bottomAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 0),
-        ])
-        
-        return view
-    }
-    
-    // MARK: ActivityFeedViewInputs
+    // MARK: Private
     
     @objc func requestUpdate() {
         output.requestUpdate()
     }
     
-    var refreshControl = UIRefreshControl()
+    private var refreshControl = UIRefreshControl()
     
-    private var updateUIAction: (() -> Void)?
+    private var isLoading: Bool = false {
+        didSet {
+            if self.isLoading && !refreshControl.isRefreshing {
+                let indicator = createLoadingIndicator()
+                tableView.tableHeaderView = indicator
+                
+                indicator.startAnimating()
+            } else {
+                tableView.tableHeaderView = nil
+            }
+        }
+    }
+    
+    private func createLoadingIndicator() -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
+        return indicator
+    }
+    
+    // MARK: ActivityFeedViewInputs
+    
     func setFeedSections(sections: [ActivityFeedSection]) {
         precondition(Thread.isMainThread, "Main thread is required to update UI")
         
-        updateUIAction = { [weak self] in
+        isLoading = true
+        
+        scheduledUpdateUIAction = { [weak self] in
             guard let self = self else { return }
+            
+            self.isLoading = false
             
             self.dataSource.sections = sections
             self.delegate.sectionTitles = sections.map { $0.title }
-            self.delegate.forwardSelectionAction = { [weak self] indexPath in
+            self.delegate.selectionAction = { [weak self] indexPath in
                 guard let self = self else { return }
                 
                 let item = sections[indexPath.section].items[indexPath.row]
@@ -118,7 +148,6 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
             }
             
             self.tableView.reloadData()
-            
             self.refreshControl.endRefreshing()
         }
         
@@ -126,7 +155,7 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.3) { [weak self] in
             guard let self = self else { return }
             
-            if let action = self.updateUIAction {
+            if let action = self.scheduledUpdateUIAction {
                 action()
             }
         }
@@ -136,5 +165,7 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
         refreshControl.attributedTitle = title
     }
     
-    private(set) var didAppear: Bool = false
+    func loadingStarted() {
+        isLoading = true
+    }
 }
