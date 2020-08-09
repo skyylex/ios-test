@@ -24,9 +24,12 @@ struct ActivityFeedItem {
 
 protocol ActivityFeedViewInputs: class {
     func setFeedSections(sections: [ActivityFeedSection])
+    func setPullControlTitle(title: NSAttributedString)
 }
+
 protocol ActivityFeedViewOutputs {
     func callSelected(_ call: ActivityFeedItem)
+    func requestUpdate()
     
     func viewDidAppear()
     func viewDidDisappear()
@@ -73,6 +76,9 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
         tableView.estimatedRowHeight = 40
         tableView.tableFooterView = UIView()
         
+        refreshControl.addTarget(self, action: #selector(requestUpdate), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
         view.backgroundColor = UIColor.lightGray251()
         view.addSubview(tableView)
         
@@ -87,31 +93,19 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
     }
     
     // MARK: ActivityFeedViewInputs
-    var isLoading: Bool = false {
-        didSet {
-            if (self.isLoading && tableView.tableHeaderView == nil) {
-                let indicator = UIActivityIndicatorView(style: .medium)
-                indicator.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
-                tableView.tableHeaderView = indicator
-                indicator.startAnimating()
-            } else {
-                tableView.tableHeaderView = nil
-            }
-        }
+    
+    @objc func requestUpdate() {
+        output.requestUpdate()
     }
+    
+    var refreshControl = UIRefreshControl()
     
     private var updateUIAction: (() -> Void)?
     func setFeedSections(sections: [ActivityFeedSection]) {
         precondition(Thread.isMainThread, "Main thread is required to update UI")
         
-        isLoading = true
-        
-        // Avoid scheduling if already scheduled an update, just replace what is updated
-        let shouldScheduleUpdate = updateUIAction == nil
         updateUIAction = { [weak self] in
             guard let self = self else { return }
-            
-            self.isLoading = false
             
             self.dataSource.sections = sections
             self.delegate.sectionTitles = sections.map { $0.title }
@@ -124,16 +118,22 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
             }
             
             self.tableView.reloadData()
+            
+            self.refreshControl.endRefreshing()
         }
         
-        if (shouldScheduleUpdate) {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) { [weak self] in
-                guard let self = self else { return }
-                if let action = self.updateUIAction {
-                    action()
-                }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.3) { [weak self] in
+            guard let self = self else { return }
+            
+            if let action = self.updateUIAction {
+                action()
             }
         }
+    }
+    
+    func setPullControlTitle(title: NSAttributedString) {
+        refreshControl.attributedTitle = title
     }
     
     private(set) var didAppear: Bool = false

@@ -33,10 +33,13 @@ final class CallDetailsPresenter: CallDetailsViewOutputs {
     }
     
     func viewWillAppear() {
-        let title = (output.call.direction == .inbound) ? output.call.from : output.call.to ?? ""
+        let call = output.call
+        let title = (call.direction == .inbound) ? call.from : call.to ?? ""
+        let timeText = timeFormatter.string(from: call.creationDate)
+        
         view?.setHeaderTitle(title)
         view?.setCompactInfoDetails(phoneNumber: title,
-                                    detailsText: output.call.type.rawValue,
-                                    timeText: timeFormatter.string(from: output.call.creationDate))
+                                    detailsText: call.type.rawValue,
+                                    timeText: timeText)
     }
 }

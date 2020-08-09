@@ -27,19 +27,14 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
         self.router = router
         self.output = output
         
-        output.fetchActivityFeed { [weak self] result in
-            switch result {
-            case .success(let calls):
-                self?.updateView(with: calls)
-            case .failure(_):
-                self?.updateView(with: [])
-            }
-        }
+        requestUpdate()
     }
     
     func viewDidAppear() {
         canUpdateView = true
         
+        let attributedTitle = NSAttributedString(string: "Pull to refresh")
+        view?.setPullControlTitle(title: attributedTitle)
         onDidAppearAction()
     }
     
@@ -69,6 +64,17 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
         }
         
         router.showCallDetails(call: callDetails)
+    }
+    
+    func requestUpdate() {
+        output.fetchActivityFeed { [weak self] result in
+            switch result {
+            case .success(let calls):
+                self?.updateView(with: calls)
+            case .failure(_):
+                self?.updateView(with: [])
+            }
+        }
     }
     
 }
