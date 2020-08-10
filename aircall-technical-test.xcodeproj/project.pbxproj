@@ -26,6 +26,7 @@
 		424D0C1D24E08F810041992B /* CallDetailsRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424D0C1C24E08F810041992B /* CallDetailsRouterTests.swift */; };
 		424D0C1F24E099670041992B /* ActivityFeedDTOMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424D0C1E24E099670041992B /* ActivityFeedDTOMapperTests.swift */; };
 		424D0C2124E09B2D0041992B /* activities.json in Resources */ = {isa = PBXBuildFile; fileRef = 424D0C2024E09B2D0041992B /* activities.json */; };
+		424D0C2324E0C92D0041992B /* ActivityFeedMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424D0C2224E0C92D0041992B /* ActivityFeedMapperTests.swift */; };
 		42FB70F024DC999A004878F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB70ED24DC999A004878F4 /* AppDelegate.swift */; };
 		42FB70F124DC999A004878F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB70EE24DC999A004878F4 /* SceneDelegate.swift */; };
 		42FB70FA24DC99A6004878F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42FB70F324DC99A5004878F4 /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		424D0C1C24E08F810041992B /* CallDetailsRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDetailsRouterTests.swift; sourceTree = "<group>"; };
 		424D0C1E24E099670041992B /* ActivityFeedDTOMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedDTOMapperTests.swift; sourceTree = "<group>"; };
 		424D0C2024E09B2D0041992B /* activities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = activities.json; sourceTree = "<group>"; };
+		424D0C2224E0C92D0041992B /* ActivityFeedMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedMapperTests.swift; sourceTree = "<group>"; };
 		42FB70ED24DC999A004878F4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42FB70EE24DC999A004878F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		42FB70F324DC99A5004878F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				422FA13A24DC976F0080BFF2 /* ActivityFeedRouteTests.swift */,
 				424D0C1E24E099670041992B /* ActivityFeedDTOMapperTests.swift */,
 				424D0C1C24E08F810041992B /* CallDetailsRouterTests.swift */,
+				424D0C2224E0C92D0041992B /* ActivityFeedMapperTests.swift */,
 				422FA13C24DC976F0080BFF2 /* Info.plist */,
 				424D0C2024E09B2D0041992B /* activities.json */,
 			);
@@ -365,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				422FA13B24DC976F0080BFF2 /* ActivityFeedRouteTests.swift in Sources */,
+				424D0C2324E0C92D0041992B /* ActivityFeedMapperTests.swift in Sources */,
 				424D0C1F24E099670041992B /* ActivityFeedDTOMapperTests.swift in Sources */,
 				424D0C1D24E08F810041992B /* CallDetailsRouterTests.swift in Sources */,
 			);
