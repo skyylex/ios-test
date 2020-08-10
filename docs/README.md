@@ -42,7 +42,7 @@ Reasoning: Everything that was requested in the task was possible to do with nat
 
 - From organizational perspective it was .. to stop in time (8h limit). I was interested in making a clear showcase, and to have a feeling of the architecture. So I spent additional time on thinking about VIPER and working on additional iterations (to refactore the code few times). In the end it's possible that I exceeded the limit a bit. :)
 
-From technical perspective: using less familiar approach (VIPER) took more time than I expected and some of the skills required re-learning (UI layer implementation). Day-to-day work usually contains a lot of customized code that you don't use in the test projects :) 
+- From technical perspective: using less familiar approach (VIPER) took more time than I expected and some of the skills required re-learning (UI layer implementation). Day-to-day work usually contains a lot of customized code that you don't use in the test projects :) 
 
 ### Percentage of readiness / additional time to finish it
 
