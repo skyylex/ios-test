@@ -4,10 +4,10 @@ The architecture is a variation of VIPER (one of the approaches to implement Cle
 
 **Key classes of the architecture:**
 
-V - View. Represents actual UI layer which is responsible showing UI based on the provided data and forwarding interaction events outside.
-I - Interactor. Represents aggregation of business logic, services, data layer.
-P - Presenter. Controls presentation of the View, forwards interaction to Interactor to perform changes in the model or remote service.
-E - Entity. In the traditional approach represents data types of persistent storage (models). Defines what is transfered in application data flow. Data transfer objects (Plain objects) also could be  
+-**V - View**. Represents actual UI layer which is responsible showing UI based on the provided data and forwarding interaction events outside.
+-**I - Interactor**. Represents aggregation of business logic, services, data layer.
+-**P - Presenter**. Controls presentation of the View, forwards interaction to Interactor to perform changes in the model or remote service.
+-**E - Entity**. In the traditional approach represents data types of persistent storage (models). Defines what is transfered in application data flow. Data transfer objects (Plain objects) also could be  
 R - Router. Represents External UX flow (transitions between screens) and requests to external UI. In the provided architecture is also responsible for creation (for simplicity).
 
 **The interaction between layers could be described in the following diagram:**
