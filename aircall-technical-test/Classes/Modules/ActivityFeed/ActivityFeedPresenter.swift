@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ActivityFeedPresenterOutputs {
-    func fetchActivityFeed(completion: @escaping (Result<[CallDetails], Error>) -> Void)
+    func fetchActivityFeed(completion: @escaping (Result<[CallDetails], NSError>) -> Void)
 }
 
 final class ActivityFeedPresenter: ActivityFeedViewOutputs {
@@ -54,20 +54,24 @@ final class ActivityFeedPresenter: ActivityFeedViewOutputs {
     }
     
     func requestUpdate() {
+        view?.resultMessage = nil
         view?.loadingStarted()
+        
         output.fetchActivityFeed { [weak self] result in
             switch result {
             case .success(let calls):
-                self?.updateView(with: calls)
-            case .failure(_):
-                self?.updateView(with: [])
+                self?.updateView(with: calls, message: nil)
+            case .failure(let error):
+                self?.updateView(with: [], message: "\(error.localizedDescription)")
             }
         }
     }
     
     // MARK: Private
     
-    private func updateView(with calls: [CallDetails]) {
+    private func updateView(with calls: [CallDetails], message: String?) {
+        view?.resultMessage = message
+        
         let sections = mapper.map(calls: calls)
         let updateViewAction = {
             DispatchQueue.main.async { [weak self] in

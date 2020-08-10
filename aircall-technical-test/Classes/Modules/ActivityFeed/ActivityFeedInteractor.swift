@@ -16,7 +16,7 @@ final class ActivityFeedInteractor: ActivityFeedPresenterOutputs {
         self.networkService = NetworkService()
     }
     
-    func fetchActivityFeed(completion: @escaping (Result<[CallDetails], Error>) -> Void) {
+    func fetchActivityFeed(completion: @escaping (Result<[CallDetails], NSError>) -> Void) {
         networkService.fetchActivityFeed { [weak self] result in
             guard let self = self else { return }
             

@@ -23,6 +23,8 @@ struct ActivityFeedItem {
 }
 
 protocol ActivityFeedViewInputs: class {
+    var resultMessage: String? { get set }
+    
     func loadingStarted()
     func setFeedSections(sections: [ActivityFeedSection])
     func setPullControlTitle(title: NSAttributedString)
@@ -101,6 +103,8 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
     // MARK: Private
     
     @objc func requestUpdate() {
+        tableView.tableHeaderView = nil
+        
         output.requestUpdate()
     }
     
@@ -114,9 +118,32 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
                 
                 indicator.startAnimating()
             } else {
-                tableView.tableHeaderView = nil
+                tableView.tableHeaderView = createMessageLabel(message: resultMessage)
             }
         }
+    }
+    
+    private func createMessageLabel(message: String?) -> UIView? {
+        guard let message = message else { return nil }
+        
+        let label = UILabel()
+        label.numberOfLines = 3
+        label.text = message
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let headerView = UIView()
+        headerView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
+        headerView.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 0),
+            label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20),
+            label.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: 20),
+            label.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 0),
+        ])
+        
+        return headerView
     }
     
     private func createLoadingIndicator() -> UIActivityIndicatorView {
@@ -126,6 +153,8 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
     }
     
     // MARK: ActivityFeedViewInputs
+    
+    var resultMessage: String?
     
     func setFeedSections(sections: [ActivityFeedSection]) {
         precondition(Thread.isMainThread, "Main thread is required to update UI")
@@ -168,4 +197,5 @@ final class ActivityFeedViewController: UIViewController, ActivityFeedViewInputs
     func loadingStarted() {
         isLoading = true
     }
+
 }

@@ -25,14 +25,18 @@ final class NetworkService {
         self.requestBuilder = requestBuilder
     }
     
-    func fetchActivityFeed(completion: @escaping (Result<[CallDTO], Error>) -> Void) {
+    func fetchActivityFeed(completion: @escaping (Result<[CallDTO], NSError>) -> Void) {
         guard let request = requestBuilder.buildAllActivitiesRequest() else {
             return
         }
         
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: request) { (data, response, error) in
-            if let error = error {
+            if let _ = error {
+                let error = NSError(domain: "NetworkServiceError", code: 103, userInfo: [
+                    NSLocalizedDescriptionKey : "Cannot load data from the server"
+                ])
+                
                 completion(.failure(error))
                 return
             }
