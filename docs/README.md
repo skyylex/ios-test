@@ -17,7 +17,7 @@ The architecture is a variation of VIPER (one of the approaches to implement Cle
 View <-> Presenter <-> Interactor <-> Services 
 ```
 
-**Key principles of architecture:**
+**Key principles of architecture and approach:**
 
 - Strict separation of the concerns between layers. So you know where to place your code.
 - Inputs / Outsputs protocols that define external dependencies. Most of the classes don't know much except provided inputs / outputs. 
@@ -40,9 +40,9 @@ Reasoning: Everything that was requested in the task was possible to do with nat
 
 ### The most difficult part
 
-- From organizational perspective it was .. to stop. Since there was a limit of 8h. With Viper architecture I believe it takes more time to implement everything, but I wanted to show my skills. So it's possible that I exceeded the limit a bit. :)
+- From organizational perspective it was .. to stop in time (8h limit). I was interested in making a clear showcase, and to have a feeling of the architecture. So I spent additional time on thinking about VIPER and working on additional iterations (to refactore the code few times). In the end it's possible that I exceeded the limit a bit. :)
 
-From technical perspective: using less familiar approach (VIPEW) took more time than I expected and also I needed to refresh some of the skills (UI layer implementation). Day-to-day work usually contains a lot of customized code that you don't use in the test projects :) 
+From technical perspective: using less familiar approach (VIPER) took more time than I expected and some of the skills required re-learning (UI layer implementation). Day-to-day work usually contains a lot of customized code that you don't use in the test projects :) 
 
 ### Percentage of readiness / additional time to finish it
 
