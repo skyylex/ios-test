@@ -4,17 +4,25 @@ The architecture is a variation of VIPER (one of the approaches to implement Cle
 
 **Key classes of the architecture:**
 
--**V - View**. Represents actual UI layer which is responsible showing UI based on the provided data and forwarding interaction events outside.
--**I - Interactor**. Represents aggregation of business logic, services, data layer.
--**P - Presenter**. Controls presentation of the View, forwards interaction to Interactor to perform changes in the model or remote service.
--**E - Entity**. In the traditional approach represents data types of persistent storage (models). Defines what is transfered in application data flow. Data transfer objects (Plain objects) also could be  
-R - Router. Represents External UX flow (transitions between screens) and requests to external UI. In the provided architecture is also responsible for creation (for simplicity).
+ - **V - View**. Represents actual UI layer which is responsible for showing UI based on the provided data and forwarding interaction events outside.
+ - **I - Interactor**. Represents aggregation of business logic, services, data layer.
+ - **P - Presenter**. Controls presentation of the View, forwards interaction to Interactor to perform changes in the model or remote service.
+ - **E - Entity**. In the traditional approach represents data types of persistent storage (models). Defines what is transfered in application data flow. Data transfer objects (Plain objects) also could be in this category.  
+ - **R - Router**. Represents External UX flow (transitions between screens) and requests to external UI. In the provided architecture is also responsible for creation (for simplicity).
 
 **The interaction between layers could be described in the following diagram:**
-
+```
           Router
              |
 View <-> Presenter <-> Interactor <-> Services 
+```
+
+**Key principles of architecture:**
+
+- Strict separation of the concerns between layers. So you know where to place your code.
+- Inputs / Outsputs protocols that define external dependencies. Most of the classes don't know much except provided inputs / outputs. 
+- The layers interact only with neighbours. It allows to minimize spread of changes if they are necessary.
+- No storyboards - everything is programmed. Takes more time, but simplifies testability a bit and re-usability in long-term.
 
 ### Choice of libraries
 
@@ -32,7 +40,7 @@ Reasoning: Everything that was requested in the task was possible to do with nat
 
 ### The most difficult part
 
-- From organizational perspective it was .. to stop. Since there was a limit of 8h. With Viper architecture I believe it takes more time to implement everything, but I wanted to show my skills. So it's possible that I exceeded the limit a bit.
+- From organizational perspective it was .. to stop. Since there was a limit of 8h. With Viper architecture I believe it takes more time to implement everything, but I wanted to show my skills. So it's possible that I exceeded the limit a bit. :)
 
 From technical perspective: using less familiar approach (VIPEW) took more time than I expected and also I needed to refresh some of the skills (UI layer implementation). Day-to-day work usually contains a lot of customized code that you don't use in the test projects :) 
 
